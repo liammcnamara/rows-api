@@ -6,23 +6,26 @@ var url = require('url')
 
 class rowsapi {
 
-    #api_url = 'https://api.rows.com/';
+    #url = 'https://api.rows.com/';
 
-    #api_version = 'v1';
+    #version = 'v1';
 
     #key;
 
     constructor(API_URL=null, API_VERSION=null, API_KEY) {
-        if (!API_URL == null) this.#api_url = API_URL;
-        if (!API_VERSION == null) this.#api_version = API_VERSION;
+        if (!(API_URL == null)) this.#url = API_URL;
+        if (!(API_VERSION == null)) this.#version = API_VERSION;
         this.#key = API_KEY;
     }
 
     async rows_get_request(endpoint,parameters=null) {
-        const params = url.format({query: parameters})
-        return await fetch(this.#api_url+this.#api_version+'/'+endpoint+params, {
-            headers: {Authorization: 'Bearer '+this.#key},
-            method: 'GET'
+        const apiURL = new URL(this.#url);
+
+        apiURL.pathname = '/'+this.#version+'/'+endpoint;
+        apiURL.search = url.format({query: parameters});
+
+        return await fetch(apiURL.href, {
+            headers: {Authorization: 'Bearer '+this.#key}
         })
     }
 
@@ -68,7 +71,7 @@ class rowsapi {
     //  /spreadsheets/{spreadsheet_id}/tables/{table_id}/values/{range}
     // params spreadsheet_id* table_id* range* cells (true/false)
 
-    async spreadsheet(spreadsheet_id, table_id, range, cells=false) {
+    async spreadsheet_rows(spreadsheet_id, table_id, range, cells=false) {
         let cell_or_values = '/values/'
         if(spreadsheet_id == null)
             throw("Spreadsheet id cannot be null");
