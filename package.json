@@ -1,0 +1,15 @@
+{
+  "name": "rows-api",
+  "version": "1.0.0",
+  "description": "rows-api - Unofficial rows.com API for NodeJS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "keywords": [
+    "rows.com",
+    "api"
+  ],
+  "author": "Liam McNamara",
+  "license": "MIT"
+}
