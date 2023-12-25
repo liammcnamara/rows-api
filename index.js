@@ -12,9 +12,9 @@ class rowsapi {
 
     #key;
 
-    constructor(API_URL=null, API_VERSION=null, API_KEY) {
-        if (!(API_URL == null)) this.#url = API_URL;
-        if (!(API_VERSION == null)) this.#version = API_VERSION;
+    constructor(API_KEY, API_URL='https://api.rows.com/', API_VERSION='v1') {
+        if (API_URL != this.#url) this.#url = API_URL;
+        if (API_VERSION != this.#version) this.#version = API_VERSION;
         this.#key = API_KEY;
     }
 

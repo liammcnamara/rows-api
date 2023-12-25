@@ -8,7 +8,10 @@
   },
   "keywords": [
     "rows.com",
-    "api"
+    "api",
+    "spreadsheets",
+    "data",
+    "visualization"
   ],
   "author": "Liam McNamara",
   "license": "MIT"
